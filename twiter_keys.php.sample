@@ -1,0 +1,11 @@
+<?php
+
+  // Save this as twiter_keys.php and put valid ones
+
+  // Connect to TWEETER
+  $consumerKey       = 'XXX';
+  $consumerSecret    = 'XXX';
+  $accessToken       = 'XXX';
+  $accessTokenSecret = 'XXX';
+
+?>
