@@ -12,7 +12,7 @@
   echo 'https wrapper: ', in_array('https', $w) ? 'yes':'no', "\n";
   echo 'wrappers: ', var_export($w);
   echo "\n---\n";
-  die;
+  // die;
 
   // $_sdr = $_SERVER['DOCUMENT_ROOT'];
   require '_classes/twitteroauth/twitter.class.php';
