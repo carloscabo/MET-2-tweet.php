@@ -5,6 +5,15 @@
   chdir( dirname(__FILE__) );
   echo dirname( __FILE__ ). "\n";
 
+  // Test config for open https with PHP
+  $w = stream_get_wrappers();
+  echo 'openssl: ',  extension_loaded  ('openssl') ? 'yes':'no', "\n";
+  echo 'http wrapper: ', in_array('http', $w) ? 'yes':'no', "\n";
+  echo 'https wrapper: ', in_array('https', $w) ? 'yes':'no', "\n";
+  echo 'wrappers: ', var_export($w);
+  echo "\n---\n";
+  die;
+
   // $_sdr = $_SERVER['DOCUMENT_ROOT'];
   require '_classes/twitteroauth/twitter.class.php';
   require '_classes/debuglib.php';
@@ -19,13 +28,15 @@
 
   $data = [];
   // $data['url'] = 'test.html';
-  $data['url'] = 'http://www.metmuseum.org/art/collection/search/' . $collection_id; //
+  $data['url'] = 'https://www.metmuseum.org/art/collection/search/' . $collection_id; //
+  echo $data['url'] . PHP_EOL;
+  $data['html'] = file_get_contents( $data['url'] );
 
   /* Use internal libxml errors -- turn on in production, off for debugging */
   libxml_use_internal_errors(true);
   $dom = new DomDocument;
   $dom->preserveWhiteSpace = false;
-  $dom->loadHTMLFile( $data['url'] );
+  $dom->loadHTML( $data['html'] );
 
   $xpath = new DomXPath($dom);
 
